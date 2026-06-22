@@ -20,12 +20,10 @@ def validador_contraseñas(passw):
 
 def validador_usuarios(user, dicc):
     if len(user) <= 6:
-        print("Nombre de usuario muy corto")
-        return False
+        return "Nombre de usuario muy corto"
     else:
         if user in dicc:
-            print("Usuario ya existente, elige otro usuario")
-            return False
+            return "Usuario ya existente, elige otro usuario"
         else:
             print("Usuario disponible :)")
             return True

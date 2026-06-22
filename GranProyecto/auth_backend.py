@@ -1,6 +1,6 @@
 import hashlib, json
-from terminados.auth_bakend.validador import validador_contraseñas
-from terminados.auth_bakend.validador import validador_usuarios
+from GranProyecto.validador import validador_contraseñas
+from GranProyecto.validador import validador_usuarios
 
 class AuthBackend:
     def __init__(self):
@@ -60,51 +60,51 @@ class AuthBackend:
                 return "Contraseña Incorrecta. ¡ATENCIÓN: Tu cuenta ha sido bloqueada por seguridad!"
             return f"Contraseña Incorrecta. Te quedan {intentos_restantes} intentos."
     
-objeto = AuthBackend()
+# objeto = AuthBackend()
 
 
-while True:
-    print("Elige una opción: \n1. Resgistrarme \n2. Iniciar Sesión \n3. Salir")
-    try:
-        op = input(">>>: ").strip()
-        if op in ["1", "resgistrarme"]:
-            while True:
-                user = input("Ingresa un usuario: ").strip()
-                retorno = validador_usuarios(user, objeto.base_datos)
-                if retorno == True:
-                    break
+# while True:
+#     print("Elige una opción: \n1. Resgistrarme \n2. Iniciar Sesión \n3. Salir")
+#     try:
+#         op = input(">>>: ").strip()
+#         if op in ["1", "resgistrarme"]:
+#             while True:
+#                 user = input("Ingresa un usuario: ").strip()
+#                 retorno = validador_usuarios(user, objeto.base_datos)
+#                 if retorno == True:
+#                     break
                 
-            while True:
-                password = input("Ingresa una contraseña: ").strip()
-                retorno = validador_contraseñas(password)
-                if retorno == True:
-                    password_confirmation = input("Ingresa nuevamente la contraseña contraseña: ").strip()
-                    if password_confirmation == password:
-                        objeto.registrar_usuario(user, password)
-                        objeto.guardar_archivo()
-                        print("Cuenta creada con exito :)")
-                        break
-                    else:
-                        print("Las contraseñas no coinciden. Vuelve a intentarlo.")
-                else:
-                    print(retorno)
-        elif op in ["2", "iniciar sesion", "iniciar sesión"]:
-            while True:
-                usuario = input("Ingresa tu usuario: ").strip()
-                contraseña = input("Ingresa tu contraseña: ").strip()
-                retorno = objeto.login_usuario(usuario, contraseña)
-                if retorno == True:
-                    break
-                else:
-                    if "bloquead" in retorno:
-                        break
-        elif op in ["3", "salir"]:
-            print("¡Hasta luego!")
-            break
-        else:
-            print("Opción no existente")
-    except KeyboardInterrupt:
-        print("\nEjecución interrumpida por el usuario")
-        break
-    except Exception as error:
-        print(f"Error Inesperado: {error}")
+#             while True:
+#                 password = input("Ingresa una contraseña: ").strip()
+#                 retorno = validador_contraseñas(password)
+#                 if retorno == True:
+#                     password_confirmation = input("Ingresa nuevamente la contraseña contraseña: ").strip()
+#                     if password_confirmation == password:
+#                         objeto.registrar_usuario(user, password)
+#                         objeto.guardar_archivo()
+#                         print("Cuenta creada con exito :)")
+#                         break
+#                     else:
+#                         print("Las contraseñas no coinciden. Vuelve a intentarlo.")
+#                 else:
+#                     print(retorno)
+#         elif op in ["2", "iniciar sesion", "iniciar sesión"]:
+#             while True:
+#                 usuario = input("Ingresa tu usuario: ").strip()
+#                 contraseña = input("Ingresa tu contraseña: ").strip()
+#                 retorno = objeto.login_usuario(usuario, contraseña)
+#                 if retorno == True:
+#                     break
+#                 else:
+#                     if "bloquead" in retorno:
+#                         break
+#         elif op in ["3", "salir"]:
+#             print("¡Hasta luego!")
+#             break
+#         else:
+#             print("Opción no existente")
+#     except KeyboardInterrupt:
+#         print("\nEjecución interrumpida por el usuario")
+#         break
+#     except Exception as error:
+#         print(f"Error Inesperado: {error}")
